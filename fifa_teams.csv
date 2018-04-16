@@ -1,0 +1,628 @@
+Arsenal,ARS
+Aston Villa,AVL
+Burnley,BRN
+Chelsea,CHE
+Crystal Palace,CRY
+Everton,EVE
+Hull City,HUL
+Leicester City,LEI
+Liverpool,LIV
+Manchester City,MCI
+Manchester United,MUN
+Newcastle Utd,NEW
+QPR,QPR
+Southampton,SOU
+Spurs,TOT
+Stoke City,STK
+Sunderland,SUN
+Swansea City,SWA
+West Brom,WBA
+West Ham,WHU
+Birmingham City,BIR
+Blackburn Rvrs,BLB
+Blackpool,BLP
+Bolton,BOL
+Bournemouth,BOU
+Brentford,BRE
+Brighton,BHA
+Cardiff City,CAR
+Charlton Ath,CHA
+Derby County,DER
+Fulham,FUL
+Huddersfield,HUD
+Ipswich Town,IPS
+Leeds United,LEE
+Middlesbrough,MID
+Millwall,MIL
+Norwhich City,NOR
+Nott'm Forrest,NFO
+Reading,RDG
+Rotherham Utd,ROT
+Sheffield Wed,SHW
+Watford,WAT
+Wigan Athletic,WIG
+Wolves,WOL
+Barnsley,BAR
+Bradford City,BRD
+Bristol City,BRC
+Chesterfield,CHF
+Colchester,COL
+Coventry City,COV
+Crawley Town,CRA
+Crewe Alexandra,CRE
+Doncaster,DON
+Flettwood Town,FWT
+Gillingham,GIL
+Leyton Orient,LEY
+MK Dons,MKD
+Notts County,NTS
+Oldham Athletic,OLD
+Peterborough,PET
+Port Vale,PVL
+Preston,PRE
+Rochdale,ROC
+Scunthorpe Utd,SCU
+Sheffield Utd,SHU
+Swindon Town,SWI
+Walsall,WAL
+Yeovil Town,YEO
+Accrington,ACC
+AFC Wimbledon,WIM
+Burton Albion,BA
+Bury,BRY
+Cambridge Utd,CAM
+Carlisle United,CRL
+Cheltenham Town,CHL
+Dagenham,DAG
+Exeter City,EXE
+Hartlepool,HAR
+Luton Town,LUT
+Mansfield Town,MAN
+Morecambe,MOR
+Newport County,NEW
+Northampton,NHT
+Oxford United,OXF
+Plymouth Argyle,PLY
+Portsmouth,POR
+Shrewsbury,SHR
+Southend United,SOU
+Stevenage,STE
+Tranmere Rovers,TRA
+Wycombe,WYC
+York City,YOR
+AS Monaco,ASM
+Bordeuax,GDB
+EA Guingamp,EAG
+Evian Thonon FC,ETG
+FC Lorient,FCL
+FC Metz,FCM
+FC Nantes,FCN
+LOSC Lile,LIL
+Marseille,OM
+Montpellier HSC,MON
+OGC Nice,OGC
+Olympique Lyon,OL
+PSG,PSG
+RC lens,RCL
+Saint-Etienne,STE
+SC Bastia,SCB
+SM Caen,SMC
+Stade Reims,SDR
+Stade Rennais,SR
+Toulouse FC,TFC
+AC Ajaccio,ACA
+AC Arles,ACA
+AJ Auxerre,AJA
+Angers SCO,SCO
+AS Nancy,ASN
+Cham. Niortais,NIO
+Clermont Foot,CFA
+Dijon FCO,DIJ
+ES Troyes,TR3
+FC Sochaux,SOC
+GFC Ajaccio,GFC
+LB Chateauroux,LBC
+Le Havre AC,HAC
+Nimes Olympique,NO
+Stade Brest,SB
+Stade Lavallois,SL
+Tours FC,TFC
+US Creteil,USC
+US Orleans,ORL
+Calenciennes FC,VA
+1. FC Koln,KOE
+1. FSV Mainz 05,MO5
+1899 Hoffenheim,HOF
+Bayer 04,BO4
+Bor. Dortmund,BVB
+Bor. M'gladbach,BMG
+Eint. Frankfurt,FFM
+FC Augsburg,FCA
+FC Bayern,FCB
+FC Schalke 04,SO4
+Hamburger SV,HSV
+Hannover 96,H96
+Hertha BSC,BSC
+SC Freiburg,SCF
+SC Paderborn,SCP
+VfB Stuttgart,VFB
+WfL Wolfsburg,WOB
+Werder Bremen,BRE
+1. FC K'lautern,FCK
+1. FC Nuremberg,FCN
+1860 Munich,M60
+Braunschweig,EBS
+Darmstadt,DAR
+Erzgebirge Aue,AUE
+F. Dusseldorf,F95
+FC Ingolstadt,FCI
+FC St. Pauli,STP
+FSV Frankfurt,FSV
+Greuther Furth,SGF
+Heidenheim,HEI
+Karlsruher SC,KSC
+RB Leipzig,LEI
+SV Sandhausen,SAN
+Uniion Berlin,FCU
+VfL Bochum,BOC
+VfR Aalen,AAL
+Argentina,ARG
+Australia,AUS
+Austria,AUT
+Belgium,BEL
+Bolivia,BOL
+Brazil,BRA
+Bulgaria,BUL
+Cameroon,CMR
+Chile,CHI
+Columbia,COL
+Cote d'ivoire,CIV
+Czech Republic,CZE
+Denmark,DEN
+Ecuador,ECU
+Egypt,EGY
+England,ENG
+Finland,FIN
+France,FRA
+Germany,GER
+Greece,GRE
+Hungary,HUN
+India,IND
+Ireland,IRL
+Italy,ITA
+Korea Republic,KOR
+Mexico,MEX
+Netherlands,NED
+New Zealand,NZL
+Northern Ireland,NIR
+Norway,NOR
+Paraguay,PAR
+Peru,PER
+Poland,POL
+Portugal,POR
+Romania,ROU
+Russia,RUS
+Scotland,SCO
+Slovenia,SVN
+South Africa,RSA
+Spain,ESP
+Sweden,SWE
+Switzerland,SUI
+Turkey,TUR
+United States,USA
+Uruguay,URU
+Venezuela,VEN
+Wales,WAL
+Atalanta,ATA
+Cagliari,CAG
+Cesena,CES
+Chievo Verona,CVE
+Empoli,EMP
+Fiorentina,FIO
+Genoa,GEN
+Hellas Verona,VER
+Inter,INT
+Juventus,JUV
+Lazio,LAZ
+Milan,MIL
+Napoli,NAP
+Palermo,PAL
+Parma,PAR
+Roma,ROM
+Sampdoria,SAM
+Sassuolo,SAS
+Torino,TOR
+Udinese,UDI
+Avellino,AVE
+Bari,BAR
+Bologna,BOL
+Brescia,BRE
+Carpi,CAR
+Catania,CAT
+Chiavari,CHI
+Cittadella,CIT
+Crotone,CRO
+Frosinone,FRO
+La Spezia,SPE
+Lanciano,LAN
+Latina,LAT
+Livorno,LIV
+Modena,MOD
+Perugia,PER
+Pescara,PES
+Terni,TER
+Trapani,TRA
+Varese,VAR
+Vercelli,VER
+Vicenza,VIC
+Busan L'Park,BS
+FC Seoul,SE
+GyeongNam FC,GN
+Incheon United,IC
+Jeju United FC,JJ
+Jeonbuk FC,JB
+Jeonnam Dragons,JN
+Pohang Stellers,PH
+Sangju Sangmu,SAN
+Seongnam FC,SN
+Suwon Bluewings,SW
+Ulsan Hyundai,UL
+America,AME
+Atlas,ATS
+Chiapas,CHI
+Club Leon,LEO
+Cruz Azul,CRU
+Guadalajara,GUA
+Leones Negros,UDG
+Monarcas,MOR
+Monterrey,MON
+Pachuca,PAC
+Puebla,PUE
+Queretaro,QUE
+Santos Laguna,SAN
+Tigres,TIG
+Tijuana,TIJ
+Toluca,TOL
+U.N.A.M,UNA
+Veracruz,VER
+ADO Den Haag,ADO
+Ajax,AJA
+AZ,AZ
+Excelsior,EXC
+FC Dordrecht,DOR
+FC Groningen,GRO
+FC Twente,TWE
+FC Utrecht,UTR
+Feyenoord,FEY
+Go Ahead Eagles,GAE
+Heracles Almelo,HER
+NAC Breda,NAC
+PEC Zwolle,ZWO
+PSV,PSV
+sc Heerenveen,HEE
+SC Cambuur,CAM
+Vitesse,VIT
+Willem II,WIL
+Aelesunds FK,ALE
+FK Bodo/Glimt,B/G
+FK Haugesund,FKH
+Lillestrom SK,LSK
+Molde FK,MFK
+ODD,ODD
+Rosenborg BK,RBK
+Sandnes Ulf,ULF
+Sarpsborg,SFK
+SK Brann,BRA
+Sogndal,SIL
+Stabaek Fotball,STB
+Start,IKS
+Stromsgodset IF,SIF
+Valerenga,VIF
+Viking FK,VIK
+Cracovia,CRA
+GKS Belchatow,GKS
+Gornik Leczna,LEC
+Gornik Zabrze,ZAB
+Jagiellonia,BIA
+Korona Kielce,KIE
+Lech Poznan,POZ
+Lechia Gdansk,GDA
+Legia Warszawa,LEG
+Piast Gliwice,GLI
+Podbeskidzie,POD
+Pogon Szczecin,SZC
+Ruch Chorzow,CHO
+Slask Wroclaw,WRO
+Wisla Krakow,WIS
+Zawisza,ZAW
+Academica,AAC
+Belenenses,CFB
+Boavista,BOA
+CD Nacional,CDN
+CS Maritimo,CSM
+Estoril-Praia,EST
+FC Arouca,FCA
+FC Porto,FCP
+Gil Vicente,GIL
+Moreirense FC,MFC
+Pacos Ferreira,PCF
+Penafiel,PEN
+Rio Ave FC,RIO
+SC Braga,SCB
+SL Benfica,SLB
+Sporting CP,SCP
+Vit. Guimaraes,VSC
+Vitoria FC,VFC
+Athlone Town,AFC
+Bohemians FC,BOH
+Bray Wanderers,BRA
+Cork City,COR
+Derry City,DRY
+Drogheda Utd,DRO
+Dundalk,DUN
+Limerick,LIM
+Shamrock Rovers,SHA
+Sligo Rovers,SLI
+St. Pats,STP
+UCD AFC,UCD
+FC Shakhtar,SHA
+Kaizer Chiefs,CHI
+NY City FC,NYC
+Olympiakos CFP,OLY
+Orlando City,ORL
+Orlando Pirates,PIR
+Panathinaikos,PAO
+PAOK,PAK
+Rangers,RAN
+Classic XI,CXI
+Amkar Perm,AMK
+Arsenal Tula,TUL
+CSKA Moskva,CSK
+Dinamo Moskva,DIN
+FC Krasnodar,FCK
+FC Rostov,FCR
+FC Ufa,UFA
+FC Ural,FCU
+Kuban Krasnodar,KUB
+Lokomotiv,LOK
+Mordovia Saransk,SAR
+Rubin Kazan,RUB
+Spartak Moskva,SPM
+Terek Grozny,TG
+Torpedo Moskva,TOR
+Zenit,ZEN
+Al-Ahli,AHL
+Al-Faisaly,FSL
+Al-Fateh,FTH
+Al-Hilal,HIL
+Al-Ittihad,ITD
+Al-Khaleej,KHA
+Al-Nassr,NSR
+Al-Orubah FC,ORU
+Al-Raed,RED
+Al-Shabab,SHB
+Al-Taawoun,TWN
+Alshoulla,ALS
+Hajer,HAJ
+Najran,NJR
+Aberdeen,ABE
+Celtic,CEL
+Dundee FC,DFC
+Dundee United,UTD
+Hamilton,HAM
+Inverness CT,ICT
+Kilmarnock,KIL
+Motherwell,MOT
+Partick Thistle,PAT
+Ross County,ROS
+St. Johnstone,STJ
+St. Mirren,STM
+Athletic Bilboa,ATH
+Athletico Madrid,ATL
+Celta Vigo,CEL
+Cordoba CF,CÓR
+Elche FC,ELC
+FC Barcelona,BAR
+Getafe CF,GET
+Granada CF,GRA
+Levante UD,LEV
+Malaga CF,MÁL
+Rayo Vallecano,RAY
+DC Deportivo,DEP
+RCD Espanyol,ESP
+Real Madrid,REA
+Real Sociedad,SOC
+SD Eibar,EIB
+Sevilla FC,SEV
+UD Almeria,ALM
+Valencia CF,VAL
+Villarreal CF,VIL
+AD Alcorcon,ADA
+Albacete,ALB
+CA Osasuna,OSA
+CD Leganes,LEG
+CD Lugo,LUG
+CD Mirandes,MIR
+CD Numancia,NUM
+CD Tenerife,CDT
+Deport. Alaves,ALA
+FC Barcelona B,FCB
+Girona FC,GIR
+Racing Santander,RAC
+RC Recreativo,REC
+RCD Mallorca,MAL
+Real Betis,BET
+Real Valladolid,VAD
+Real Zaragoza,ZAR
+Sabadell FC,SAB
+SD Ponferradina,SDP
+Sporting Gijon,SPO
+UD Las Palmas,PAL
+UE Llagostera,LLA
+AIK Fotboll,AIK
+Atvidabergs FF,AFF
+BK Hacken,BKH
+Brommapojkarna,BP
+Djurgardens IF,DIF
+Falkenbergs FF,FAL
+Gefle IF,GIF
+Halmstads BK,HBK
+Helsingborgs IF,HIF
+IF Elfsborg,IFE
+IFK Goteborg,IFK
+IFK Norrkoping,NOR
+Kalmar FF,KFF
+Malmo FF,MFF
+Mjallby AIF,MJA
+Orebro SK,ÖSK
+BSC Young Boys,YB
+FC Aarau,AAR
+FC Basel,BAS
+FC Luzern,LUZ
+FC Sion,SIO
+FC St. Gallen,GAL
+FC Thun,FCT
+FC Vaduz,VAD
+FC Zurich,ZüR
+Grasshopper,GCZ
+Akhisarspor,AKH
+Balikerirspor,BAL
+Baseksehir,BAS
+Besiktas JK,BES
+Bursaspor,BUR
+Caykur Rizespor,RIZ
+Erciyesspor,ERC
+Eskisehirspor,ESK
+Fenerbahce SK,FEN
+Galatasaray SK,G.S
+Gaziantepspor,GAZ
+Genclerbirligi,GEN
+Karabukspor,KAR
+Kasimpasa SK,KAS
+Konyaspor,KON
+Mersin,MER
+Sivasspor,SIV
+Trabzonspor,TRA
+Chicago Fire,CHI
+Chivas USA,CHV
+Colorado Rapids,COL
+Columbus Crew,CLB
+D.C. United,DC
+FC Dallas,FCD
+Houston Dynamo,HOU
+LA Galaxy,LA
+Montreal Impact,MTL
+New England,NE
+NY Red Bulls,NY
+Philadelphia,PHI
+Portland,POR
+Real Salt Lake,RSL
+SJ Earthquakes,SJ
+Sounders FC,SEA
+Sporting KC,SKC
+Toronto FC,TOR
+Whitecaps FC,WFC
+Bahia Blanca,BAH
+Banfield,BAN
+Belgrano,BEL
+Boca Juniors,BOC
+Estudiantes,EST
+FI. Varela,FLV
+G. La Plata,GLP
+Godoy Cruz,GOD
+Independiente,IND
+Lanus,LAN
+Newell's,NOB
+Quilmes,QUI
+Racing Club,RAC
+Rafaela,RAF
+River Plate,RIV
+Rosario Ctral.,CEN
+San Lorenzo,SLO
+Sarandi,SAR
+Tigre,TIG
+Velez Sarsfield,VEL
+Adelaide United,ADL
+Brisbane Roar,BRI
+Central Coast,CCM
+Melb. Victory,MVC
+Melbourne City,MCT
+Newcastle Jets,NEW
+Perth Glory,PER
+Sydney FC,SYD
+Well. Phoenix,WEL
+WS Wanderers,WSW
+Admira,ADM
+FK Austria,AUS
+RB Salzburg,RBS
+SCR Altach,ALT
+SK Rapid Wien,RAP
+SK Sturm Graz,STU
+SV Grodig,SVG
+SV Ried,RIE
+Wiener Neustadt,WRN
+Wolfsberger AC,WAC
+Cercle Brugge,CEB
+Club Brugge,CLB
+KAA Gent,GNT
+KRC Genk,GNK
+KV Kortrijk,KVK
+KV Mechelen,KVM
+KV Oostende,KVO
+KVC Westerlo,WES
+Lierse SK,LIE
+Royal Mouscron,RMP
+RSC Anderlecht,AND
+Sp. Charleroi,CHA
+Sport. Lokeren,LOK
+Standard Liege,STA
+Waasl.- Beveren,WAA
+Zulte- Waregem,ZWA
+AC Barnechea,BAR
+Audaz Italiano,AUD
+CD Antofagasta,ANT
+CD Cobreloa,COB
+CD Cobresal,COB
+CD Huachipato,HUA
+CD O'Higgins,OHI
+CD Palestino,PAL
+Colo-Colo,COL
+Depor. Iquique,IQU
+Nublense,NUB
+San Marcos,MAR
+Uni. Catolica,UC
+Uni. Concepcion,CON
+Uni. De Chile,UDC
+Union Espanola,UE
+Union La Calera,ULC
+Wanderers,WAN
+Al. Petrolera,PET
+Atl. Nacional,AN
+Atletico Huila,HUI
+Aguilas Doradas,AD
+Boyaca Chico,CHI
+Deportes Tolima,TOL
+Deportivo Cali,CAL
+Depotivo Pasto,PAS
+Envigado,ENV
+Fortaleza FC,FOR
+Ind. Santa Fe,SFE
+Indep. Medellin,MED
+Junior FC,JUN
+La Equidad,LAE
+Millionarios FC,MIL
+Once Caldas,OC
+Patriotas FC,PAT
+Uniautonoma FC,UNI
+Aalborg BK,AaB
+Bronby IF,BIF
+Esbjerg fB,EfB
+FC Kobenhavn,FCK
+FC Midttjylland,FCM
+FC Nordsjaelland,FCN
+FC Vestsjaelland,FCV
+Hobro IK,HIK
+Odense Boldklub,OB
+Randers FC,RFC
+Silkeborg IF,SIF
+SonderjyskE,SE

@@ -1,0 +1,9 @@
+﻿Hello {name},
+Sombody (probably you) requested to reset password on your account.
+If it was you, please click the link below
+and change your password there.
+
+If you didn't request it, just ignore this email.
+
+Here is the link:
+{link}

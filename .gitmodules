@@ -1,0 +1,3 @@
+[submodule "fifastreamer"]
+	path = fifastreamer
+	url = git@bitbucket.org:MarSoftWare/fifastreamer.git

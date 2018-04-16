@@ -1,0 +1,54 @@
+{% extends 'admin/model/details.html' %}
+{% block head %}
+{% endblock %}
+{% block details_search %}
+{% endblock %}
+{% block details_table %}
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='admin/styles.css') }}">
+    <table class="table table-hover table-bordered searchable">
+        {% for c, name in details_columns %}
+            <tr>
+                <td>
+                    <b>{{ name }}</b>
+                </td>
+                <td>
+                    {{ get_value(model, c) }}
+                </td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td>
+                <b>Game state</b>
+            </td>
+            <td>
+                {{ game.state }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>Game winner</b>
+            </td>
+            <td>
+                {{ model.game_winner_nickname }}
+            </td>
+        </tr>
+    </table>
+    <div class="row">
+        {% for player in players %}
+            {% include 'admin/ticket/chat.html' %}
+        {% endfor %}
+    </div>
+    <div class="container">
+        {% if model.open %}
+            <form method="post" action="{{ get_url('.resolve_ticket', id=model.id) }}" class="center-block">
+                <input type="hidden" name="draw" value="draw"/>
+                <button type="submit" class="btn btn-primary center-block">Draw</button>
+            </form>
+        {% else %}
+            <form method="post" action="{{ get_url('.reopen_ticket', id=model.id) }}" class="center-block">
+                <button type="submit" class="btn btn-primary center-block">Reopen</button>
+            </form>
+        {% endif %}
+    </div>
+{% endblock %}

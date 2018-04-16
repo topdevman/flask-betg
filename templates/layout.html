@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{% block title %}BetGame{% endblock %}</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+	</head>
+	<body class="container-fluid">
+
+		{% for message in get_flashed_messages() %}
+			<div class="flash">{{message}}</div>
+		{% endfor %}
+
+		{% block header %}
+		<header class="row">
+			<h1>{{ self.title() }}</h1>
+			<div class="balance">
+				<span class="money">4</span>
+				<span class="coins">4</span>
+			</div>
+		</header>
+		{% endblock %}
+
+		<div id="body">
+		{% block body %}{% endblock %}
+		</div>
+
+		{% block nav %}
+		<nav id="menu" class="row">
+		{% for endpoint, name in [
+			('bets', 'Bets'),
+			('leaderboard', 'Leaderboard'),
+			('challenges', 'Challenges'),
+			('profile', 'Profile'),
+		] %}
+			<div class="col-xs-3 {{ endpoint }}{% if endpoint == request.endpoint %} active{% endif %}">
+				<a href="{{ url_for(endpoint) }}" >
+					<img src="{{ url_for('static', filename='img/'+endpoint+'.png') }}"/>
+					<span>{{name}}</span>
+				</a>
+			</div>
+		{% endfor %}
+		</nav>
+		{% endblock %}
+	</body>
+</html>

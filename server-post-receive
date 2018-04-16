@@ -1,0 +1,104 @@
+#!/bin/bash
+
+if [[ "$PWD" == */test/* ]]; then
+	DIR=test
+	MODE=test
+	URLBASE=/test
+else
+	DIR=api
+	MODE=prod
+	URLBASE=
+fi
+
+dokill() {
+	supervisorctl pid ${MODE}:betgame-api-${MODE} | xargs kill -HUP
+	if [[ $MODE == prod ]]; then
+		supervisorctl pid prod:betgame-observer | xargs kill -HUP
+	fi
+}
+
+testrev() {
+	echo "Testing if correct revision is serving"
+	url="$1"debug/revision
+	rev="$2"
+	result=$(curl "$url" 2>/dev/null)
+	if [[ "$result" != "$rev" ]]; then
+		echo "Expected $rev, got $result"
+		return 1
+	fi
+}
+testone() {
+	url="$1"
+	result=$(curl "$url" 2>/dev/null)
+	chk="${result:0:1}${result:14:3}"
+	[[ "$chk" == "{Not" ]]
+}
+
+dotests() {
+	rev="$1"
+	url="http://betgame.co.uk${URLBASE}/v1/"
+	if [[ -n "$rev" ]]; then
+		testrev "$url" "$rev"
+	else
+		restone "$url"
+	fi && if [[ $MODE == prod ]]; then
+		testone http://localhost:8021
+	fi
+}
+
+prep_db() {
+	[ -x ./main.py ] || return 1 # if not available yet then ignore
+	source ~/env/bin/activate
+}
+updatedb() {
+	prep_db || return
+	OLD_DB=$(./main.py db current)
+	OLD_DB=${OLD_DB% *}
+	./main.py db upgrade || exit 'Failed to update db'
+}
+downgradedb() {
+	prep_db || return
+	./main.py db downgrade $OLD_DB || echo 'Failed to downgrade db'
+}
+
+updatedocs() {
+	echo 'Updating docs...'
+	source ~/.nvm/nvm.sh
+	apidoc
+}
+
+cd ..
+GIT_DIR='.git'
+read OLD NEW REF
+echo $OLD $NEW $REF
+git reset --hard
+git checkout $REF
+git reset --hard
+
+# FIXME: rollback will not work after db is migrated...
+updatedb
+
+dokill
+
+echo "Testing..."
+tries=5
+while [ $tries -gt 0 ]; do
+	sleep 1
+	if dotests "$NEW"; then
+		echo "New version serving. Congratulations!"
+		updatedocs
+		exit
+	else
+		echo result: "$result"
+		echo chk:"$chk":
+	fi
+	((tries--))
+	echo -n .
+done
+echo ${result}
+echo "WARNING! service didn't start. Will not accept changes."
+downgradedb
+git reset --hard $OLD
+dokill
+exit 1
+

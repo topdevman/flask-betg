@@ -1,0 +1,8 @@
+﻿Hey {name},
+
+Just saw that you signed up for BetGame.
+How was your experience?
+
+Regards,
+
+Doug from BetGame

@@ -1,0 +1,42 @@
+<div class="col-md-6">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <span class="glyphicon glyphicon-comment"></span>
+            {{ player.nickname }} (Reported {{ player.report_for_game(model.game_id).result }})
+            <div class="btn-group pull-right">
+
+            </div>
+        </div>
+        <div class="panel-body">
+            <ul class="chat">
+                {% for message in model.chat_with(player.id) %}
+                    {% if message.admin_message %}
+                        {% include 'admin/ticket/admin_msg.html' %}
+                    {% else %}
+                        {% include 'admin/ticket/user_msg.html' %}
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="panel-footer">
+            <form action="{{ get_url('.send_msg', id=model.id) }}" method="post">
+                <div class="input-group">
+                    <input id="btn-input" type="text" class="form-control input-sm"
+                           placeholder="Type your message here..." name="text"/>
+                    <input type="hidden" name="receiver_id" value="{{ player.id }}"/>
+                    <span class="input-group-btn">
+                            <button type="submit" class="btn btn-warning btn-sm" id="btn-chat">
+                                Send
+                            </button>
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% if model.open %}
+        <form method="post" action="{{ get_url('.resolve_ticket', id=model.id) }}">
+            <input type="hidden" name="winner_id" value="{{ player.id }}"/>
+            <button type="submit" class="btn btn-success center-block">{{ player.nickname }} won</button>
+        </form>
+    {% endif %}
+</div>

@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block header %}
+{% endblock %}
+{% block nav %}
+{% endblock %}
+
+{% block body %}
+	<a class="xclose" href="{{ url_for("bets") }}">X</a>
+
+	<input type="text" class="search" placeholder="Choose your Game"/>
+
+	<div class="row">
+	{% for game in games %}
+		<form method="post" action="" class="col-xs-4">
+			<input type="hidden" name="gametype" value="{{ game.id }}"/>
+			<button type="submit" class="game-button" title="{{ game.name }}"{% if not game.supported %} disabled{% endif %}>
+				<img src="{{ config.API }}/gametypes/{{ game.id }}/image" alt="{{ game.name }}"/>
+			</button>
+		</form>
+	{% endfor %}
+	</div>
+{% endblock %}

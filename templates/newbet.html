@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block body %}
+	<form action="" method="post">
+
+		<input name="opponent" id="opponent-choose" type="text" placeholder="Choose your Opponent"/>
+
+		<input class="bet-amount" name="bet-amount" placeholder="Bet amount"/>
+		<a class="line" href="{{ url_for('gametype') }}">
+			Game
+			<span>{{ session['gametype'] or "Select here..." }}</span>
+		</a>
+
+		<label>
+			Game mode
+			<select name="gamemode">
+				{% if gamemodes %}
+				<option>xyz</option>
+				{% else %}
+				<option value="" selected disabled>Select here...</option>
+				{% endif %}
+			</select>
+		</label>
+
+		<label class="line">
+			Twitch link
+			<input name="twitch" placeholder="..."/>
+		</label>
+
+		<label class="line">
+			To win
+			<input name="bet" class="coins" placeholder="0"/>
+		</label>
+
+		<a class="line">
+			Potential new balance
+			<span id="new-balance">4</span>
+		</a>
+
+		{% if 'gametype' in session and 'gamemode' in session %}
+		<input type="submit" value="SEND CHALLENGE"/>
+	{% endif %}
+
+	</form>
+{% endblock %}

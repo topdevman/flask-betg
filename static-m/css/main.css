@@ -1,0 +1,108 @@
+header {
+	margin: 0;
+	background: #255180;
+	height: 20vh;
+	color: white;
+}
+header h1 {
+	float: left;
+}
+header .balance {
+	float: right;
+	margin: 1vw;
+}
+header .balance span {
+	margin: 1vw;
+}
+header .balance .money:before {
+	background: url(/img/money.png);
+}
+header .balance .coins:before {
+	background: url(/img/coins.png);
+}
+
+#body {
+	margin-left: 5vw;
+	clear: both;
+}
+#body a.line, #body label {
+	display: block;
+	width: 100%;
+	text-transform: uppercase;
+	color: #2b3c4c;
+	border-bottom: #a0b9d7 solid 2px;
+	padding-bottom: 1vh;
+}
+#body a.line span {
+	text-transform: none;
+	float: right;
+}
+#body label input, #body label select {
+	width: 50%;
+	float: right;
+	border: none;
+	text-align: right;
+}
+#body label select {
+	background: none;
+}
+#opponent-choose {
+	margin-top: -10vh;
+}
+#opponent-choose, input.search {
+	display: block;
+	width: 90%;
+	height: 20vh;
+	border-radius: 10vh;
+	margin-right: 5vw;
+	padding: 5vh;
+	border: 3px solid #cd6d78;
+	color: #cd6d78;
+	font-size: 2vw;
+	font-style: italic;
+}
+input[type=submit] {
+	display: block;
+	width: 90%;
+	height: 16vh;
+	border-radius: 8vh;
+	border: none;
+	padding: 4vh;
+	background: #de5463;
+	color: white;
+}
+.game-button {
+	border: 0;
+	padding: 10px 0;
+	width: 100%;
+	background: none;
+}
+.game-button img {
+	width: 100%;
+}
+
+nav#menu {
+	background: #255180;
+}
+nav#menu div {
+	height: 20vw;
+	font-size: 3vw;
+	padding: 3vw;
+}
+nav#menu div a {
+	display: block;
+	height: 100%;
+	text-align: center;
+	color: #052443;
+}
+nav#menu div a img {
+	display: block;
+	width: 40%;
+	margin: auto;
+}
+nav#menu div a.img span {
+	display: block;
+}
+nav#menu div.active a {
+	color: white;
+}

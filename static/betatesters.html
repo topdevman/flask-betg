@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>BetGame beta testers</title>
+		<style>
+label {
+	display: block;
+}
+.loaded, .hide {
+	display: none;
+}
+.floatThead-table thead {
+	background-color: rgba(255,255,255,.9);
+}
+.spoiler-head {
+	cursor: pointer;
+	text-decoration: underline;
+	color: blue;
+}
+.spoiler-body {
+	display: none;
+}
+		</style>
+		<script src="/scripts/jquery-1.11.3.min.js"></script>
+		<script src="/scripts/jquery.floatThead.min.js"></script>
+		<script src="/scripts/common.js"></script>
+		<script>
+$(function() {
+	var flagnames = [],
+		flagvals = {};
+	function add_column(name, is_empty) {
+		// unfloat before changing..
+		if($('#users').is(':visible'))
+			$('#users').floatThead('destroy');
+
+		if(!flagvals[name])
+			flagvals[name] = [];
+
+		var actions = $('<div/>', {
+			class: 'spoiler-body',
+		})
+		.append($('<a/>', {
+			href: '#',
+			class: 'rename',
+			text: '[rename]',
+		}))
+		.append($('<a/>', {
+			href: '#',
+			class: 'delete',
+			text: '[delete]',
+		}))
+		.append($('<a/>', {
+			href: '#',
+			class: 'add',
+			text: '[+flag]',
+		}));
+		if(is_empty) {
+			// the user will want to add some flags, so:
+			// pre-unfold it...
+			actions.show();
+			// ...and add special actions for multilines
+			actions.append($('<a/>', {
+				href: '#',
+				class: 'add_textfield',
+				text: '[+textfield]',
+			}));
+		}
+
+		$('<th/>', {
+			'data-column': name,
+		})
+			.append($('<span/>', {
+				class: 'column-name',
+				text: name,
+			}))
+			.append(' ')
+			.append($('<div/>', {
+				class: 'spoiler-head',
+				text: '...',
+			}))
+			.append(actions)
+			.appendTo($('#users thead tr'));
+		$('#users tbody tr').each(function() {
+			var row = $(this);
+			var td = $('<td/>', {'data-column': name});
+			$.each(flagvals[name], function(_, prop) {
+				add_checkbox(td, prop);//, v.indexOf(prop) >= 0);
+			});
+			td.appendTo(row);
+		});
+
+		// ..and refloat after it
+		if($('#users').is(':visible'))
+			$('#users').floatThead();
+	}
+	function add_checkbox(dest, prop, checked) {
+		var cbox = $('<input/>', {
+			'type': 'checkbox',
+			'name': prop,
+			'class': 'flagtoggle',
+		});
+		if(checked)
+			cbox.attr('checked', 1);
+		$('<label/>')
+			.append(cbox)
+			.append(prop)
+			.appendTo(dest);
+	}
+	function add_textfield(dest, val, multiline) {
+		$(multiline ? '<textarea/>' : '<input/>', {
+			class: 'textfield',
+			type: 'text',
+		}).val(val).appendTo(dest);
+	}
+	function showUsers() {
+		API.call('GET', 'betatesters', {}, function(ret) {
+			$('#login_form').slideUp();
+			var games = {};
+			var csv = '';
+			var csv_full = '';
+
+			// first populate flagvals with all possible flag options
+			$.each(ret.betatesters, function(i, tester) {
+				var flags = tester.flags;
+				if(typeof flags == 'string') {
+					// incorrect json, ignore it
+					return;
+				}
+				$.each(flags, function(column, props) {
+					if(!flagvals[column]) {
+						flagvals[column] = [];
+						flagnames.push(column);
+					}
+					$.each(props, function(i, prop) {
+						if(flagvals[column].indexOf(prop) == -1)
+							flagvals[column].push(prop);
+					});
+				});
+			});
+			function compareNoCase(a,b) {
+				return a.toLowerCase().localeCompare(b.toLowerCase());
+			}
+			// sort columns, vals and add column headers..
+			flagnames.sort(compareNoCase);
+			$.each(flagnames, function(i, key) {
+				add_column(key); // for now we have only header filled
+				flagvals[key].sort(compareNoCase);
+			});
+
+			// now populate table with data
+			$.each(ret.betatesters, function(i, tester) {
+				// prepare statistics
+				$.each(tester.gametypes, function(i, game) {
+					games[game] = (games[game] || 0) + 1;
+				});
+
+				var row = $('<tr/>').data('uid', tester.id);
+				$.each(['id', 'email', 'name', 'gametypes', 'platforms', 'console', 'create_date',
+				], function(i, k) {
+					var v = tester[k];
+					if(Array.isArray(v) && v.length && v[0]) {
+						var child = $('<ul/>');
+						$.each(v, function(i, point) {
+							$('<li/>', {text: point}).appendTo(child);
+						});
+						$('<td/>').append(child).appendTo(row);
+					} else {
+						if(v !== 0 && (!v || (typeof v == 'object' && !v.length)))
+							v = '(none)';
+						$('<td/>', {text: String(v)}).appendTo(row);
+					}
+				});
+				// and add custom columns
+				$.each(flagnames, function(i, col) {
+					var td = $('<td/>', {'data-column': col});
+					var is_text = flagvals[col].indexOf('_text') != -1;
+					var is_multi = flagvals[col].indexOf('_multiline') != -1;
+					if(is_text || is_multi) {
+						var val = '';
+						$.each(tester.flags[col] || [], function(i, str) {
+							// we suppose there is only one value other than '_text'
+							if(str != '_text' && str != '_multiline') {
+								val = str;
+								return false;
+							}
+						});
+						add_textfield(td, val, is_multi);
+						// and prohibit adding bool flags to this column
+						// FIXME: should only be performed once... but how?
+						$('th[data-column="'+col+'"] a.add').remove();
+					} else {
+						$.each(flagvals[col], function(_, prop) {
+							var checked = false;
+							if(typeof tester.flags !== 'string' &&
+									typeof tester.flags[col] !== 'undefined')
+								checked = tester.flags[col].indexOf(prop) != -1;
+							add_checkbox(td, prop, checked);
+						});
+					}
+					td.appendTo(row);
+				});
+				$('#users tbody').append(row);
+
+				csv += $.map([
+						'name', '', 'email', '', '',
+						'From Web form', ''
+				], function(key) {
+					if(key === '')
+						return key;
+					if(typeof tester[key] === 'undefined')
+						return key;
+					return tester[key];
+				}).join(',') + '\n';
+				csv_full += $.map([
+						'id', 'email', 'name', 'gametypes',
+						'platforms', 'console', 'create_date',
+				], function(key) {
+					if(!tester[key])
+						return '';
+					if(typeof tester[key] == 'object') { // array?
+						return tester[key].join('; ')
+					}
+					return tester[key];
+				}).join('\t') + '\n';
+			});
+			$.when(
+				$('.loaded').slideDown(),
+				$('#users').slideDown()
+			).then(function() {
+				// fixed header
+				$('#users').floatThead();
+			});
+			$('#export').attr('href', 'data:attachment/csv,'+encodeURIComponent(csv)).slideDown();
+			$('#export_full').attr('href', 'data:attachment/tsv,'+encodeURIComponent(csv_full)).slideDown();
+
+			// now handle statistics
+			var sortable = [];
+			for(game in games) {
+				sortable.push([game, games[game]]);
+			}
+			sortable.sort(function(a,b) {
+				return b[1] - a[1]; // reversed sort
+			});
+			$.each(sortable, function(i, elem) {
+				var row = $('<tr/>');
+				$('<td/>').text(elem[0]).appendTo(row);
+				$('<td/>').text(elem[1]).appendTo(row);
+				$('#gamestats').append(row);
+			});
+			$('#gamestats').slideDown();
+
+			// persist scroll pos: load..
+			if(sessionStorage.scroll) {
+				$('html,body').animate({
+					scrollTop: sessionStorage.scroll,
+				}, function() {
+				});
+			}
+			// and saving
+			$(document).scroll(function() {
+				sessionStorage.scroll = $(document).scrollTop();
+			});
+
+		}, function(err) {
+			$('#message').text(JSON.stringify(err));
+		});
+	}
+	function row_update(row, control, success, failure) {
+		if(row.is('.size-row')) // skip it
+			return;
+		var uid = row.data('uid');
+		if(!uid) {
+			console.warn('Unknown row, no uid!', row, control);
+			return;
+		}
+		var data = {};
+
+		if(control)
+			control.prop('disabled', true);
+		row.find('input:checked').each(function() {
+			var column = $(this).parents('td').data('column');
+			if(!data[column])
+				data[column] = [];
+			data[column].push($(this).attr('name'));
+		});
+		row.find('.textfield').each(function() {
+			var column = $(this).parents('td').data('column');
+			data[column] = [
+				$(this).is('textarea') ? '_multiline' : '_text',
+				$(this).val(),
+			];
+		});
+		return API.call('PATCH', 'betatesters/'+uid, {
+			flags: JSON.stringify(data),
+		}, function(ret) {
+			console.info('success');
+			if(control)
+				control.prop('disabled', false);
+			if(success)
+				success(ret);
+		}, function(err) {
+			console.error('failure!', err);
+			if(control)
+				control.prop('disabled', false);
+			if(failure)
+				failure(err);
+		});
+	}
+	$('#users').on('change', 'input.flagtoggle', function(e) {
+		var cb = $(this);
+		var state = cb.prop('checked');
+		row_update(cb.parents('tr'), cb, null, function(err) {
+			// restore state
+			cb.prop('checked', !state);
+			alert('Failed to update value! '+err);
+		});
+	});
+	$('#users').on('change', '.textfield', function(e) {
+		// TODO: on failure restore old text somehow?
+		row_update($(this).parents('tr'), $(this), null, function(err) {
+			alert('Failed to update value! '+err);
+		});
+	});
+	$('#login_form').submit(function(e) {
+		e.preventDefault();
+
+		$('#login_submit').fadeOut();
+		var form = $('#login_form'),
+			data = {
+				id: form.find('#name').val(),
+				password: form.find('#password').val(),
+			};
+		API.call('POST', 'players/_/login', data, function(ret) {
+			localStorage.token = ret.token;
+			API.token = ret.token;
+			showUsers();
+		}, function(err) {
+			form.find('#message').text(JSON.stringify(err));
+		});
+	});
+	$.chain = function() {
+		var def = $.Deferred();
+		var funcs = arguments;
+		var left = arguments.length;
+		function next() {
+			if(left == 0) {
+				def.resolve();
+				return;
+			}
+			var func = funcs[funcs.length - left]; // current func
+			var prom = func().promise(); // for promise will return itself,
+										 // for jquery ojbect will return promise.
+			// these handlers will be launched in order we specify them
+			prom.always(function() {
+				left--;
+			}).done(function(ret) {
+				def.notify({
+					idx: funcs.length-left,
+					left: left,
+					result: ret,
+					success: true,
+				});
+			}).fail(function(ret) {
+				def.notify({
+					idx: funcs.length-left,
+					left: left,
+					result: ret,
+					success: false,
+				});
+			}).always(function() {
+				next();
+			});
+		}
+		next();
+		return def.promise();
+	};
+	function showForm(form) {
+		return $.chain(function() {
+			return $('html,body').animate({
+				scrollTop: 0,
+				scrollLeft: 0,
+			}).promise();
+		}, function() {
+			return form.slideDown().promise();
+		}, function() {
+			return $('#users').floatThead('reflow').promise();
+		});
+	}
+	$('#add_column').click(function(e) {
+		e.preventDefault();
+
+		var name = prompt('Enter new column name:\n(will not be saved unless you add some flags to it!)');
+		if(!name)
+			return;
+
+		add_column(name, true);
+		$('html,body').animate({
+			scrollTop: 0,
+			scrollLeft: $('html,body').width()+1000, // to be sure :)
+		});
+	});
+	$('#users thead').on('click', 'a.add', function(e) {
+		e.preventDefault();
+
+		var column = $(this).parents('th').data('column');
+		var name = prompt('Enter new flag name for column '+column+':\n(will not be saved unless you check it for some user!)');
+		if(!name) { // empty or cancel
+			return;
+		}
+		$('td[data-column="'+column+'"]').each(function() {
+			add_checkbox($(this), name);
+		});
+		// prohibit adding text field after checkbox was added
+		$(this).parents('th').find('a.add_textfield').remove();
+		$('#users').floatThead('reflow');
+	});
+	$('#users thead').on('click', 'a.add_textfield', function(e) {
+		e.preventDefault();
+
+		var column = $(this).parents('th').data('column');
+		var is_single = confirm('Ok for simple field, Cancel multiline:');
+		$('td[data-column="'+column+'"]').each(function() {
+			add_textfield($(this), '', !is_single);
+		});
+		// prohibit adding boolean flags to column with text field
+		$(this).parents('th').find('a.add').remove();
+		// ...and adding text fields, as one is already added
+		$(this).remove();
+		// now that we want this text field to persist, let's trigger update on first row
+		row_update($('#users tr:not(.size-row):first'));
+		$('#users').floatThead('reflow');
+	});
+	$('#users thead').on('click', 'a.rename', function(e) {
+		e.preventDefault();
+
+		var oldname = $(this).parents('th').data('column');
+		var newname = prompt('Please enter new name:', oldname);
+		if(newname === null) // cancel
+			return;
+
+		$('th[data-column="'+oldname+'"]')
+			.attr('data-column', newname)
+			.data('column', newname)
+			.find('span.column-name')
+				.text(newname);
+		var failure = false;
+		$('#users td[data-column="'+oldname+'"]')
+			.attr('data-column', newname)
+			.data('column', newname)
+			.each(function() {
+				row_update($(this).parents('tr'), null, null, function(err) {
+					failure = err;
+				});
+				if(failure)
+					return false; // break loop
+			});
+		if(failure) {
+			alert('Failed to rename some columns, please reload page!');
+		}
+
+		// ..and reflow thead
+		$('#users').floatThead('reflow');
+	});
+	$('#users thead').on('click', 'a.delete', function(e) {
+		e.preventDefault();
+
+		var colname = $(this).parents('th').data('column');
+		if(confirm('Do you want to remove column '+colname+'?')) {
+			// no #users here because we want to catch floating thead
+			$('[data-column="'+colname+'"]').remove();
+			$('#users').floatThead('reflow');
+			$('#users tr').each(function() {
+				var ret = true;
+				row_update($(this), null, null, function(err) {
+					alert('Failure!.. Please reload page.');
+					ret = false; // break loop
+				});
+				return ret;
+			});
+		}
+	});
+	$('.cancel').click(function() {
+		$(this).parents('form').slideUp()
+			.find('input').blur();
+		$('#users').floatThead('reflow');
+	});
+	$('body').on('click', '.spoiler-head', function(e) {
+		e.preventDefault();
+		$(this).next().slideToggle('fast');
+	});
+
+	if(localStorage.token) {
+		$('#message').text('Loading...');
+		API.token = localStorage.token;
+		showUsers();
+	}
+});
+		</script>
+	</head>
+	<body>
+		<h1>BetGame beta testers</h1>
+		<form id="login_form" action="">
+			<div>
+				You should login as admin in order to continue!
+			</div>
+			<input type="text" id="name" placeholder="Your email or userid"/>
+			<input type="password" id="password" placeholder="Password?"/>
+			<input id="login_submit" type="submit" value="OK"/>
+			<div id="message" style="color: red;"></div>
+		</form>
+		<div class="loaded">
+			| <a href="#gamestats">Go to game stats</a>
+			| <a id="export" target="_blank" download="beta-testers.csv" style="display: none;">Export to CSV</a>
+			| <a id="export_full" target="_blank" download="beta-testers-full.tsv" style="display: none;">Export all data to TSV</a>
+			| <a href="#" id="add_column">[+column]</a>
+			|
+			<table id="users" border="1">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>E-mail</th>
+						<th>Name</th>
+						<th>Game types</th>
+						<th>Platforms</th>
+						<th>Consoles</th>
+						<th>Create date</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+			<table id="gamestats" border="1">
+				<tr>
+					<th>Game</th>
+					<th>Count</th>
+				</tr>
+			</table>
+		</div>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-65612741-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+	</body>
+</html>

@@ -1,0 +1,5 @@
+﻿Congratulations {name}, 
+You won the game at {date}!
+
+This email is to notify you that you earned {bet} coins.
+Your current balance is {balance} coins.

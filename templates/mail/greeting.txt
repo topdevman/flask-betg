@@ -1,0 +1,5 @@
+﻿Hello {name}, 
+Thank you for registering at BetGame!
+
+Betgame is a platform which allows you to play video games with other users and make bets
+...
